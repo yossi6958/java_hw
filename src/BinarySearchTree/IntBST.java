@@ -31,21 +31,25 @@ public class IntBST {
     private boolean addRecursive(GenericBSTNode<Integer> currentNode, int item) {
         if (item == currentNode.getData()) {
             return false;
-        } else if (item < currentNode.getData()) {
+        }
+
+        if (item < currentNode.getData()) {
             if (currentNode.getLeft() == null) {
                 currentNode.setLeft(new GenericBSTNode<>(item, currentNode, null, null));
                 return true;
-            } else {
-                return addRecursive(currentNode.getLeft(), item);
             }
-        } else {
-            if (currentNode.getRight() == null) {
-                currentNode.setRight(new GenericBSTNode<>(item, currentNode, null, null));
-                return true;
-            } else {
-                return addRecursive(currentNode.getRight(), item);
-            }
+
+            return addRecursive(currentNode.getLeft(), item);
+
         }
+        if (currentNode.getRight() == null) {
+            currentNode.setRight(new GenericBSTNode<>(item, currentNode, null, null));
+            return true;
+        }
+
+        return addRecursive(currentNode.getRight(), item);
+
+
     }
 
     public boolean TreeAdd(int item) {
@@ -63,11 +67,13 @@ public class IntBST {
         }
         if (item == currentNode.getData()) {
             return true;
-        } else if (item < currentNode.getData()) {
-            return searchRecursive(currentNode.getLeft(), item);
-        } else {
-            return searchRecursive(currentNode.getRight(), item);
         }
+        if (item < currentNode.getData()) {
+            return searchRecursive(currentNode.getLeft(), item);
+        }
+
+        return searchRecursive(currentNode.getRight(), item);
+
     }
 
     public boolean TreeIsDataFound(int item) {

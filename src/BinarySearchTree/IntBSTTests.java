@@ -4,11 +4,13 @@ public class IntBSTTests {
     public static void main(String[] args) {
         IntBST tree = new IntBST();
 
-        tree.TreeAdd(10);
-        tree.TreeAdd(5);
-        tree.TreeAdd(15);
-        tree.TreeAdd(2);
-        tree.TreeAdd(7);
+        System.out.println(tree.TreeAdd(10));
+        System.out.println(tree.TreeAdd(10));
+        System.out.println(tree.TreeAdd(5));
+        System.out.println(tree.TreeAdd(15));
+        System.out.println(tree.TreeAdd(2));
+        System.out.println(tree.TreeAdd(7));
+        System.out.println(subTreeNumOfNodes(tree.IntBSTGetRoot()));
 
         System.out.println("In-Order Traversal:");
         tree.TreePrint(IntBST.TreeTraverseMode.InOrder);
@@ -28,4 +30,15 @@ public class IntBSTTests {
         System.out.println("In-Order Traversal after clearing:");
         tree.TreePrint(IntBST.TreeTraverseMode.InOrder);
     }
+
+
+    private static int subTreeNumOfNodes(GenericBSTNode<Integer> node) {
+        if (node == null) {
+            return 0;
+        }
+        int leftCount = subTreeNumOfNodes(node.getLeft());
+        int rightCount = subTreeNumOfNodes(node.getRight());
+        return 1 + leftCount + rightCount;
+    }
+
 }
