@@ -37,6 +37,11 @@ public class Stack<T> {
         return items[count - 1];
     }
 
+
+    public int getSize() {
+        return count;
+    }
+
     public boolean isEmpty() {
         return count == 0;
     }
